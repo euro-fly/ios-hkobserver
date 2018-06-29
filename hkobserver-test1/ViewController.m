@@ -21,13 +21,25 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.myStore = [[HKHealthStore alloc] init];
     [self startHealthKitAuth];
+    [self setupQuery];
+    [self updateLabel];
+    
+}
+
+- (void)setupQuery {
     HKQuantityType *sampleType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
     HKObserverQuery *query = [[HKObserverQuery alloc] initWithSampleType:sampleType predicate:nil updateHandler:^(HKObserverQuery *query, HKObserverQueryCompletionHandler completionHandler, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self updateLabel];
-            
+            printf("[HKO] Setup query has been called\n");
         });
     }];
+    [self.myStore enableBackgroundDeliveryForType:sampleType frequency:HKUpdateFrequencyImmediate withCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            [self updateLabel];
+        }
+    }];
+    printf("[HKO] Setup query completed \n");
     [self.myStore executeQuery:query];
 }
 
@@ -68,7 +80,8 @@
 }
 
 - (void)updateLabel {
-    // probably... need to grab the last data....
+    // probably... need to grab the last data.... <- gets data for the day...
+    printf("[HKO] updating the label...\n");
     HKQuantityType *type = [HKSampleType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
     NSDate *today = [NSDate date];
     NSDate *startOfDay = [[NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian] startOfDayForDate:today];
@@ -80,11 +93,14 @@
         if (error != nil) {
             // TODO
         } else {
+            __block NSString *x = nil;
             [result enumerateStatisticsFromDate:startOfDay toDate:today withBlock:^(HKStatistics * _Nonnull result, BOOL * _Nonnull stop) {
                 HKQuantity *quantity = [result sumQuantity];
                 double steps = [quantity doubleValueForUnit:[HKUnit countUnit]];
-                self.stepCountLabel.text = [NSString stringWithFormat:@"%.20lf", steps];
+                printf("[HKO] steps...");
+                x = [NSString stringWithFormat:@"%.0lf", steps];
             }];
+            [_stepCountLabel setText:x];
         }
     };
     [self.myStore executeQuery:query];
