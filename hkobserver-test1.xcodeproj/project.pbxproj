@@ -453,16 +453,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "hkobserver-test1/hkobserver-test1.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TV9KFY46P5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = BCNX88HE55;
 				INFOPLIST_FILE = "hkobserver-test1/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mycompany22aaaa.hkobserver-test1";
+				PRODUCT_BUNDLE_IDENTIFIER = life.joule.appstore.joule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "21b48fc2-31d7-4742-bbe1-c8507bee5379";
+				PROVISIONING_PROFILE_SPECIFIER = Joule.Development_1004;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -472,16 +474,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "hkobserver-test1/hkobserver-test1.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TV9KFY46P5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = BCNX88HE55;
 				INFOPLIST_FILE = "hkobserver-test1/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mycompany22aaaa.hkobserver-test1";
+				PRODUCT_BUNDLE_IDENTIFIER = life.joule.appstore.joule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "21b48fc2-31d7-4742-bbe1-c8507bee5379";
+				PROVISIONING_PROFILE_SPECIFIER = Joule.Development_1004;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
